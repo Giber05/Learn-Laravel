@@ -11,15 +11,38 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">{{$student->nama}}</h5>
-              <p class="card-text">{{$student->nim}}</p>
-              <p class="card-text">{{$student->jurusan}}</p>
-              <p class="card-text">{{$student->email}}</p>
-              <p class="card-text">{{$student->notelp}}</p>
-              <p class="card-text"><small class="text-muted">created at {{$student->created_at}}</small></p>
+              <h4 class="card-title ms-2">{{$student->nama}}</h4>
+              
+              <div class="d-flex bd-highlight">
+                <div class="p-2 flex-grow-1 bd-highlight fw-bold">NIM</div>
+                <div class="p-2 bd-highlight " >:</div>
+                <div class="p-2 flex-fill bd-highlight ">{{$student->nim}}</div>
+              </div>
+              <div class="d-flex bd-highlight">
+                <div class="p-2 flex-grow-1 bd-highlight fw-bold">Jurusan</div>
+                <div class="p-2 bd-highlight " >:</div>
+                <div class="p-2 flex-fill bd-highlight ">{{$student->jurusan}}</div>
+              </div>
+              <div class="d-flex bd-highlight">
+                <div class="p-2 flex-grow-1 bd-highlight fw-bold">Email</div>
+                <div class="p-2 bd-highlight " >:</div>
+                <div class="p-2 flex-fill bd-highlight ">{{$student->email}}</div>
+              </div>
+              <div class="d-flex bd-highlight">
+                <div class="p-2 flex-grow-1 bd-highlight fw-bold">No. Telepon</div>
+                <div class="p-2 bd-highlight " >:</div>
+                <div class="p-2 flex-fill bd-highlight ">{{$student->notelp}}</div>
+              </div>
 
-              <button type="submit" class="btn btn-success">Edit</button>
-              <button type="submit" class="btn btn-danger">Delete</button>
+              <p class="card-text"><small class="text-muted ms-2">created at {{$student->created_at}}</small></p>
+
+              <a href="{{$student->id}}/edit" type="submit" class="btn btn-success">Edit</a>
+
+              <form action="/students/{{$student->id}}" method="post" class="d-inline">
+                @method('delete')
+                @csrf
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
             </div>
           </div>
         </div>
