@@ -29,9 +29,11 @@ use App\Http\Controllers\AuthController;
 Route::get('/', [AuthController::class, 'showFormLogin'])->name('login');
 Route::get('/login', [AuthController::class, 'showFormLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/registration', [AuthController::class,'showFormRegistration'])->name('register');
+Route::post('/registration', [AuthController::class,'Registration']);
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+    Route::get('/logout',[AuthController::class,'logout',])->name('logout');
  
     Route::get('/index', [PagesController::class, 'home'])->name('home');
     Route::resource('students', StudentsController::class);

@@ -21,7 +21,7 @@
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             Something it's wrong:
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
+                                <span aria-hidden="true">!</span>
                             </button>
                             <ul>
                             @foreach ($errors->all() as $error)
@@ -32,15 +32,15 @@
                     @endif
                     <div class="form-group">
                         <label for=""><strong>Nama Lengkap</strong></label>
-                        <input type="text" name="name" class="form-control" placeholder="Nama Lengkap">
+                        <input type="text" name="name" class="form-control" placeholder="Nama Lengkap" value="{{old('name')}}">
                     </div>
                     <div class="form-group">
                         <label for=""><strong>Email</strong></label>
-                        <input type="text" name="email" class="form-control" placeholder="Email">
+                        <input type="text" name="email" class="form-control" placeholder="Email" value="{{old('email')}}">
                     </div>
                     <div class="form-group">
                         <label for=""><strong>Password</strong></label>
-                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        <input type="password" name="password" class="form-control" placeholder="Password" >
                     </div>
                     <div class="form-group">
                         <label for=""><strong>Konfirmasi Password</strong></label>
