@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,10 +26,19 @@ use App\Http\Controllers\StudentsController;
 //     return view('about');
 // });
 
+Route::get('/', [AuthController::class, 'showFormLogin'])->name('login');
+Route::get('/login', [AuthController::class, 'showFormLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/', [PagesController::class, 'home']);
-Route::get('/about', [PagesController::class, 'about']);
-Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+ 
+    Route::get('/index', [PagesController::class, 'home'])->name('home');
+    Route::resource('students', StudentsController::class);
+ 
+    Route::get('/about', [PagesController::class, 'about']);
+    Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
+});
 
 //Students
 // Route::get('/students/{student}/edit', [StudentsController::class,'edit']);
@@ -39,5 +49,4 @@ Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
 // Route::delete('/students/{student}', [StudentsController::class, 'destroy']);
 // Route::put('/students/{student}',[StudentsController::class,'update']);
 
-Route::resource('students', StudentsController::class);
 
